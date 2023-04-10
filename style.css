@@ -65,3 +65,73 @@ main {
 .hidden {
   visibility: hidden;
 }
+.personCard {
+  position: fixed;
+  float: left;
+  left: 50%;
+  top: 47%;
+  transform: translate(-50%, -50%);
+  max-width: 400px;
+  min-width: 250px;
+  height: fit-content;
+  padding: 20px;
+  z-index: 100;
+  background-color: #7cc9fde3;
+  border-radius: 10px;
+  color: rgb(3, 1, 1);
+}
+.personCard ul {
+  padding-left: 0px;
+  list-style: none;
+  border-radius: 7px;
+  border: 0.5px dotted rgb(36, 30, 30);
+}
+.personCard ul li {
+  border: 0.5px dotted rgb(36, 30, 30);
+  padding: 5px;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(146, 145, 145, 0.6);
+}
+table {
+  width: 100%;
+}
+table td {
+  border: 0.5px dotted rgb(36, 30, 30);
+  padding: 5px;
+  width: 100%;
+}
+.first-col {
+  max-width: 30%;
+}
+
+.close-btn {
+  margin-top: 20px;
+  align-items: center;
+  appearance: none;
+  background-color: #0f0942;
+  border-radius: 12px;
+  border: #0f0942;
+  color: #f9f9fa;
+  cursor: pointer;
+  font-family: 'Google Sans', Roboto, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  height: 34px;
+  justify-content: center;
+  letter-spacing: 0.25px;
+  line-height: normal;
+  max-width: 100%;
+  padding: 2px 24px;
+  position: relative;
+  text-align: center;
+}
+.close-btn:hover {
+  background: #ccdbf5;
+  color: #0f0942;
+}
