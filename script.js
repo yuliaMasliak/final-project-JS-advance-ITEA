@@ -2,18 +2,73 @@ const baseUrl = 'https://swapi.dev/api/';
 
 let personCard = document.querySelector('.personCard');
 let overlay = document.querySelector('.overlay');
+
 document.querySelector('.show').addEventListener('click', generatePeople);
 let people = document.querySelector('.people');
+
 async function generatePeople() {
+  document.querySelector('.pagination').innerHTML = '';
   const response = await fetch(`${baseUrl}people`, {
     method: 'GET'
   });
-  const people = await response.json();
+
+  let people = await response.json();
+  console.log(people);
+  let next = document.createElement('button');
+  next.innerHTML = 'next';
+  next.classList.add('pagination-btn');
+  next.id = 'next';
+  let prev = document.createElement('button');
+  prev.innerHTML = 'prev';
+  prev.classList.add('pagination-btn');
+  prev.disabled = true;
+  prev.id = 'prev';
+  document.querySelector('.pagination').append(prev, next);
+
+  next.addEventListener('click', async () => {
+    await fetch(people.next, {
+      method: 'GET'
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        people = result;
+        if (people.previous !== null) {
+          prev.disabled = false;
+        }
+        if (people.previous === 'https://swapi.dev/api/people/?page=8') {
+          next.disabled = true;
+        }
+        renderPeople(result.results);
+      });
+  });
+
+  prev.addEventListener('click', async () => {
+    if (people.previous === null) {
+      prev.disabled = true;
+    } else {
+      prev.disabled = false;
+    }
+    await fetch(people.previous, {
+      method: 'GET'
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        people = result;
+        if (people.next == 'https://swapi.dev/api/people/?page=2') {
+          prev.disabled = false;
+        }
+        if (people.previous === null) {
+          prev.disabled = true;
+        }
+        renderPeople(result.results);
+      });
+  });
   renderPeople(people.results);
 }
 
 function renderPeople(people) {
   document.querySelector('.people').innerHTML = '';
+
   people.forEach((person) => {
     let listItem = document.createElement('div');
     listItem.classList.add('person');

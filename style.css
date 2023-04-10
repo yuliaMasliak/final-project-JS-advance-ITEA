@@ -30,6 +30,8 @@ main {
   padding: 2px 24px;
   position: relative;
   text-align: center;
+  display: block;
+  margin-bottom: 25px;
 }
 
 .show:hover {
@@ -59,7 +61,6 @@ main {
   transition: all 0.2s;
 }
 .people {
-  margin-top: 30px;
   max-width: 40%;
 }
 .hidden {
@@ -134,4 +135,27 @@ table td {
 .close-btn:hover {
   background: #ccdbf5;
   color: #0f0942;
+}
+.pagination-btn {
+  margin-right: 15px;
+  margin-bottom: 20px;
+  background: linear-gradient(to bottom right, #ef4765, #ff9a5a);
+  border: 0;
+  border-radius: 12px;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system, system-ui, 'Segoe UI', Roboto, Helvetica, Arial,
+    sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 2;
+  outline: transparent;
+  padding: 0 1rem;
+  text-align: center;
+  transition: box-shadow 0.2s ease-in-out;
+}
+.pagination-btn:disabled {
+  background: #b5bfcf;
+  color: rgb(36, 30, 30);
 }
