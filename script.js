@@ -13,18 +13,14 @@ async function generatePeople() {
   });
 
   let people = await response.json();
-  console.log(people);
-  let next = document.createElement('button');
-  next.innerHTML = 'next';
-  next.classList.add('pagination-btn');
-  next.id = 'next';
-  let prev = document.createElement('button');
-  prev.innerHTML = 'prev';
-  prev.classList.add('pagination-btn');
-  prev.disabled = true;
-  prev.id = 'prev';
-  document.querySelector('.pagination').append(prev, next);
 
+  document.querySelector(
+    '.pagination'
+  ).innerHTML = `<button class="pagination-btn" disabled id="prev">prev</button>
+  <button class="pagination-btn" id="next">next</button>`;
+
+  let next = document.getElementById('next');
+  let prev = document.getElementById('prev');
   next.addEventListener('click', async () => {
     await fetch(people.next, {
       method: 'GET'
@@ -43,6 +39,9 @@ async function generatePeople() {
   });
 
   prev.addEventListener('click', async () => {
+    if (people.previous === 'https://swapi.dev/api/people/?page=8') {
+      next.disabled = false;
+    }
     if (people.previous === null) {
       prev.disabled = true;
     } else {
